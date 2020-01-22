@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/cardview_dark_background</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:background">@color/cardview_dark_background</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
+
+    <!-- POPUP STYLE -->
+    <style name="popup_menu_style_baby" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+</resources>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">music_urselfs_list</string>
+    <string name="action_settings">Settings</string>
+    <string name="createPlaylist">Create Playlist</string>
+    <string name="playNext">Play Next</string>
+    <string name="mixMusic">Mix Music</string>
+    <string name="add_file">Add Music</string>
+    <string name="PlayListNow">Playing Now</string>
+    <string name="sum_time">Sum Time: </string>
+    <string name="PlayingNow">Music\'s Playing</string>
+</resources>

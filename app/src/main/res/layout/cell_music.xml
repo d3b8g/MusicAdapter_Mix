@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <ImageView
+            android:visibility="visible"
+            android:padding="8dp"
+            android:id="@+id/cell_img"
+            android:layout_weight="0"
+            android:layout_width="55dp"
+            android:layout_height="match_parent" />
+        <RelativeLayout
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/music_label"
+                android:text="Same text dude"
+                android:gravity="center|left"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"/>
+            <TextView
+                android:id="@+id/music_creator"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_below="@id/music_label"
+                android:gravity="center|left"
+                android:text="Msuic Creator" />
+        </RelativeLayout>
+        <ImageButton
+            android:id="@+id/more_tab"
+            android:background="@drawable/ic_more"
+            android:layout_marginEnd="32dp"
+            android:layout_width="24dp"
+            android:layout_gravity="center"
+            android:layout_height="24dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/cm_line"
+        android:orientation="vertical"
+        android:background="@color/cell_trim"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="32dp"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="32dp"
+        android:layout_height="1dp"
+        />
+</LinearLayout>

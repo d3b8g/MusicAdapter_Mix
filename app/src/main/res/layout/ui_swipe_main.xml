@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/ui_swipeble_main_menu"
+    android:layout_marginBottom="14dp"
+    android:layout_gravity="center|bottom"
+    android:padding="4dp"
+    android:layout_width="58dp"
+    android:weightSum="3"
+    app:layout_anchorGravity="top"
+    android:layout_height="25dp">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:src="@color/ui_swipe_Sitem"
+        android:background="@android:color/transparent"
+        android:layout_width="0dp"
+        android:layout_gravity="center"
+        android:layout_height="22dp"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_weight="1"
+        android:src="@color/ui_swipe_Mitem"
+        android:layout_width="0dp"
+        android:background="@android:color/transparent"
+        android:padding="1dp"
+        android:layout_gravity="center"
+        android:layout_height="22dp"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:layout_width="0dp"
+        android:background="@android:color/transparent"
+        android:src="@color/ui_swipe_Sitem"
+        android:layout_gravity="center"
+        android:layout_height="22dp"/>
+</LinearLayout>

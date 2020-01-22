@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+
+    <color name="cell_trim">#CDCCC8</color>
+    <color name="ui_swipe_menu">#E5EBF1</color>
+    <color name="ui_swipe_Sitem">#C6CBD1</color>
+    <color name="ui_swipe_Mitem">#80848a</color>
+</resources>
