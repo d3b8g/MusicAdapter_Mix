@@ -47,7 +47,7 @@ class MediaPlayer:AppCompatActivity(), CoroutineScope, View.OnClickListener {
 
     //Metadata
     var timeline:Int = 0
-    var isPlaying:Boolean = false
+    var isPlaying:Boolean = true
     var isDownloaded:Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -12,6 +12,9 @@ class MusicParamString{
 
         var musicArrayList:ArrayList<String> = ArrayList()
 
+        var url_music:ArrayList<String> = arrayListOf("https://sun9-20.userapi.com/c850616/v850616064/171e6d/RchYWdzSVNQ.jpg","https://sun9-9.userapi.com/c855136/v855136841/19fef9/IPBYNCcHEgI.jpg","https://sun9-62.userapi.com/c847220/v847220646/1cf7d5/JZxBwMAs9DQ.jpg",
+            "https://sun9-24.userapi.com/c858036/v858036485/ffc1a/hfFcCvGC2FQ.jpg","https://sun9-64.userapi.com/c200828/v200828582/1d35f/ee_4KJxMeP4.jpg")
+
         for( x in Random.nextInt(0..3)..Random.nextInt(7..15)){
             musicArrayList.add(
                 "\"name\" : \"MusicScott${Random.nextInt(0..3)}xxFeat${Random.nextInt(4..9)}\"," +
@@ -19,7 +22,7 @@ class MusicParamString{
                         "\"isMine\":${Random.nextInt(0..1)==1},"+
                         "\"time\": 201,"+
                         "\"music_id\":${x},"+
-                        "\"avatar\":\"https://sun9-21.userapi.com/c834100/v834100700/10b6b4/Q0DP-bVbD4w.jpg\""
+                        "\"avatar\":\"${url_music[(0 until url_music.size).random()]}\""
 
             )
         }
