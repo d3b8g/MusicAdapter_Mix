@@ -45,7 +45,7 @@
         android:id="@+id/container_of_avatar"
         android:layout_weight="4"
         android:layout_width="match_parent"
-        android:padding="50dp"
+        android:padding="40dp"
         android:layout_height="0dp">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/p_list"
@@ -58,10 +58,50 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp">
-        <ProgressBar
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp"/>
+            android:layout_weight="2"
+            android:weightSum="2"
+            android:layout_height="0dp">
+            <ProgressBar
+                android:id="@+id/progress_horizontal"
+                android:max="100"
+                android:progress="0"
+                android:secondaryProgress="15"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_weight="1"
+                android:indeterminate="false"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_height="0dp">
+                <TextView
+                    android:id="@+id/time_start"
+                    android:text="0:00"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
+                    android:gravity="left|center"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:id="@+id/time_end"
+                    android:text="2:43"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:gravity="right|center"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

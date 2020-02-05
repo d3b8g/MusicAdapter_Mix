@@ -20,7 +20,7 @@ class MusicParamString{
                 "\"name\" : \"MusicScott${Random.nextInt(0..3)}xxFeat${Random.nextInt(4..9)}\"," +
                         "\"creator\":\"ScotCreator_${Random.nextInt(7..16)}\","+
                         "\"isMine\":${Random.nextInt(0..1)==1},"+
-                        "\"time\": 201,"+
+                        "\"time\": ${(200..315).random()},"+
                         "\"music_id\":${x},"+
                         "\"avatar\":\"${url_music[(0 until url_music.size).random()]}\""
 

@@ -1,7 +1,9 @@
 package net.d3b8g.music_urselfs_list.Activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
+import android.os.CountDownTimer
+import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,7 @@ import net.d3b8g.music_urselfs_list.Shared.Data.Companion.massiv
 import net.d3b8g.music_urselfs_list.Shared.get_data
 import kotlin.coroutines.CoroutineContext
 
+
 class MediaPlayer:AppCompatActivity(), CoroutineScope, View.OnClickListener {
 
     lateinit var music_list: RecyclerView
@@ -32,6 +35,9 @@ class MediaPlayer:AppCompatActivity(), CoroutineScope, View.OnClickListener {
     lateinit var btn_start: ImageView
     lateinit var btn_sort: ImageView
     lateinit var linearLayout:LinearLayout
+    lateinit var progress_horizontal:ProgressBar
+    lateinit var tEnd:TextView
+    lateinit var tStart:TextView
 
     lateinit var close_payer:ImageButton
 
@@ -49,7 +55,12 @@ class MediaPlayer:AppCompatActivity(), CoroutineScope, View.OnClickListener {
     var timeline:Int = 0
     var isPlaying:Boolean = true
     var isDownloaded:Boolean = false
+    lateinit var CountDownTimer:CountDownTimer
 
+    var displayWidth = 0
+    var counterMillis = 0
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
@@ -60,15 +71,11 @@ class MediaPlayer:AppCompatActivity(), CoroutineScope, View.OnClickListener {
 
         id_now = intent.getIntExtra("id_music",0) -1
         if(id_now<0)id_now=0
-
-
-        Log.e("RRR","$size_m  вв $id_now")
+        timeline = music_data[id_now].time*1000
 
         music_list.adapter = adapter
         music_list.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL,false)
         music_list.setHasFixedSize(true)
-
-        adapter.update(updateAvatarUrl(),id_now)
 
         name = findViewById(R.id.p_music_name)
         creator = findViewById(R.id.p_music_creator)
@@ -81,6 +88,9 @@ class MediaPlayer:AppCompatActivity(), CoroutineScope, View.OnClickListener {
         btn_sort = findViewById(R.id.btn_sort)
         linearLayout = findViewById(R.id.container_of_avatar)
         close_payer = findViewById(R.id.p_hide)
+        progress_horizontal = findViewById(R.id.progress_horizontal)
+        tStart = findViewById(R.id.time_start)
+        tEnd = findViewById(R.id.time_end)
 
         close_payer.setOnClickListener(this)
         btn_sort.setOnClickListener(this)
@@ -91,8 +101,54 @@ class MediaPlayer:AppCompatActivity(), CoroutineScope, View.OnClickListener {
         btn_mine.setOnClickListener(this)
         btn_downloaded.setOnClickListener(this)
 
+        displayWidth = windowManager.defaultDisplay.width
+        progress_horizontal.max = displayWidth
+
+        progress_horizontal.setOnTouchListener { _, event ->
+            if(event.action == MotionEvent.ACTION_DOWN){
+                progress_horizontal.progress = event.x.toInt()
+                counterMillis = ( (event.x * ( timeline / 1000) ) / displayWidth ).toInt()
+                progressLive()
+            }
+            true
+        }
+
+        progressLive()
+
         setUpData()
     }
+
+    private fun progressLive() {
+        if( this::CountDownTimer.isInitialized ) CountDownTimer.cancel()
+        tEnd.text = timeUI(timeline/1000)
+        CountDownTimer = object : CountDownTimer(( timeline - counterMillis*1000 ).toLong(), 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                progressUI()
+            }
+
+            override fun onFinish() {
+                btn_skip_next.callOnClick()
+            }
+
+        }.start()
+
+    }
+
+    fun timeUI(i:Int):String = if(i>59) "${i/60}:${if(i%(60*(i/60))<10)"0${i%(60*(i/60))}" else  i%(60*(i/60)) }" else "0:${if(i<10)"0$i" else i}"
+
+    /* --------  Progressbar UI components  ------------*/
+
+    var doRepeat =  launch {  get_data(this@MediaPlayer, arrayListOf(Data.music_player,0,"do_repeat",false)) }
+    var doMix = launch { get_data(this@MediaPlayer, arrayListOf(Data.music_player,0,"do_mix",false)) }
+
+    fun progressUI(){
+        counterMillis++
+        progress_horizontal.progress = (counterMillis*100/(timeline/1000))
+        progress_horizontal.secondaryProgress = (counterMillis*100/(timeline/1000))+15
+        tStart.text = timeUI(counterMillis)
+    }
+
+
 
     private fun setUpData() {
         name.text = music_data[id_now].name
@@ -129,10 +185,14 @@ class MediaPlayer:AppCompatActivity(), CoroutineScope, View.OnClickListener {
                 id_now=-1
             }
             R.id.btn_play->{
-                if(isPlaying){
-                    btn_start.setImageResource(R.drawable.ic_pause)
-                }else{
+                isPlaying = if(isPlaying){
                     btn_start.setImageResource(R.drawable.ic_play)
+                    CountDownTimer.cancel()
+                    false
+                }else{
+                    btn_start.setImageResource(R.drawable.ic_pause)
+                    progressLive()
+                    true
                 }
             }
             R.id.p_is_download->{

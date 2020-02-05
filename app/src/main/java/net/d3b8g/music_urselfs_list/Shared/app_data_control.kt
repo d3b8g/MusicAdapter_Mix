@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
-import net.d3b8g.music_urselfs_list.Shared.Data.Companion.shared_name
-import net.d3b8g.music_urselfs_list.Shared.Data.Companion.lmusic_id
 
 
 /*
@@ -18,18 +16,6 @@ import net.d3b8g.music_urselfs_list.Shared.Data.Companion.lmusic_id
             param.add(is_saved)
             param.add(false)
 */
-
-suspend fun get_last_music(ct:Context) = withContext(IO){
-    val pref = ct.getSharedPreferences(shared_name, MODE_PRIVATE)
-    val res = pref.getInt(lmusic_id,-1)
-    return@withContext
-}
-suspend fun set_last_music(ct:Context,music_id:Int) = withContext(IO){
-    val pref = ct.getSharedPreferences(shared_name, MODE_PRIVATE)
-    val set = pref.edit()
-    set.putInt(lmusic_id,music_id)
-    set.apply()
-}
 
 suspend fun set_data(ct:Context,param:ArrayList<Any>) = withContext(IO){
     val pref = ct.getSharedPreferences(param[0].toString(), MODE_PRIVATE)

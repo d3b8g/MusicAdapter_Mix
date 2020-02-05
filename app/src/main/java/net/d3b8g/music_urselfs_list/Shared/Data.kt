@@ -8,9 +8,9 @@ class Data {
         const val is_saved = "IS_MUSIC_SAVED"
         const val check_music = "CheckMusicId"
         const val lmusic_id = "LastMusic"
+        const val music_player = "MusicPlayer"
 
         var massiv:ArrayList<MusicParcel> = ArrayList()
 
-        var player:Boolean = false
     }
 }

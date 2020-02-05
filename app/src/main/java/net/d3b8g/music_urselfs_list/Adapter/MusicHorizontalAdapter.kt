@@ -1,6 +1,5 @@
 package net.d3b8g.music_urselfs_list.Adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +13,10 @@ import net.d3b8g.music_urselfs_list.R
 class MusicHorizontalAdapter:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var musicList:ArrayList<String> = ArrayList()
-    var position_real = 0
 
     fun update(list:ArrayList<String>,position: Int){
         musicList.clear()
         musicList.addAll(list)
-        position_real = position
         notifyDataSetChanged()
     }
 
@@ -34,9 +31,10 @@ class MusicHorizontalAdapter:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if(holder is MusicViewHorizontalHolder) holder.bind(musicList[position_real])
+        if(holder is MusicViewHorizontalHolder) {
+            holder.bind(musicList[position])
+        }
     }
-
 
     class MusicViewHorizontalHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -48,9 +46,6 @@ class MusicHorizontalAdapter:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             var shake:Animation = AnimationUtils.loadAnimation(itemView.context,R.anim.shake_image)
             img.animation = shake
-
-            Log.e("RRR",avatar)
-
         }
     }
 
